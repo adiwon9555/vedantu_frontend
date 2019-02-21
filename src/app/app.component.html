@@ -1,20 +1,59 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
-</div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://github.com/angular/angular-cli/wiki">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
+<div class="container">
+  <br>
+  <div class="card">
+    <h6 class="card-header bg-primary text-white">Git Repo Search Filter</h6>
+    <div class="card-body">
+      <form class="form-inline" (ngSubmit)="searchRepos()">
+        <div class="form-group mx-sm-3 mb-2">
+          <input autofocus class="form-control" placeholder="Search" name="search" type="text" [(ngModel)]="search">
+        </div>
+        <button type="submit" class="btn btn-primary mb-2">Search</button>
+      </form>
 
+    </div>
+  </div>
+  <br>
+  <div class="card">
+    <h6 class="card-header bg-primary text-white">Repo Search Result</h6>
+    <div class="card-body">
+      <h4 *ngIf="!repos">No data to show</h4>
+      <div class="row">
+        <div *ngFor='let repo of repos;index as i' class="col-sm-4">
+          <div class="card" style="margin: 2%;width: 90%;">
+            <img class="card-img-top img-fluid rounded-circle mx-auto" style="max-width: 50%;padding-top: 6%" [src]="repo.image" alt="Card image cap">
+            <div class="card-body">
+              <h5 class="card-title" style="text-align: center">{{repo.name}}</h5>
+              <div class="row" style="text-align: center">
+                  
+                <div class="col-sm-6" style="margin-top:5%; ">
+                  <span class="rcorners2" style="font-size: 70%;">
+                      <i style="font-size: 130%; padding-left: 2%" class="fa fa-code-fork"></i>
+                    Fork {{repo.forks}}
+                  </span>
+                </div>
+                
+                <div class="col-sm-6" style="margin-top:5%; ">
+                  <span class="rcorners2" style="font-size: 70%;">
+                      <i style="font-size: 130%;" class="fa fa-info-circle"></i>
+                    Open Issues {{repo.oissues}}
+                  </span>
+                </div>
+              </div>
+
+            </div>
+            <div class="card-text text-muted" style="font-size: 75%;margin:3% 4%; ">{{repo.desc}}</div>
+
+            <div class="card-footer text-center">
+              <a [href]="repo.link" target="_blank" class="btn btn-primary" style="width: 100%">View Profile</a>
+            </div>
+
+          </div>
+          <br>
+          <br>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
